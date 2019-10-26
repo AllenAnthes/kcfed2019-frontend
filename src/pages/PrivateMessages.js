@@ -5,7 +5,6 @@ import { useApi } from '../hooks/useApi';
 import Panel from '../components/Panel';
 import AuthenticatedPage from '../components/AuthenticatedPage';
 import { useSnackbars } from '../hooks/useSnackbars';
-import { useAuth0 } from '../hooks/useAuth0';
 
 const PrivateMessages = () => {
   const [messages, setMessages] = useState([]);
@@ -29,7 +28,6 @@ const PrivateMessages = () => {
       .then(() => showSnackbarSuccess('Created new message!'))
       .catch(err => showSnackbarError(err.message));
   }
-
 
   return (
     <AuthenticatedPage>

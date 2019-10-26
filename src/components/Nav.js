@@ -17,9 +17,12 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import PersonIcon from '@material-ui/icons/Person';
+import BusinessIcon from '@material-ui/icons/Business';
 
 import { useAuth0 } from '../hooks/useAuth0';
 import NavItem from './NavItem';
+import logo from '../images/logo.png';
 
 const drawerWidth = 220;
 
@@ -85,14 +88,21 @@ const useStyles = makeStyles(theme => ({
 export default function Nav({ children }) {
   const classes = useStyles();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.up('sm'));
+  const isMobile = !useMediaQuery(theme.breakpoints.up('sm'));
 
   useEffect(() => {
-    setOpen(isMobile);
+    setOpen(!isMobile);
   }, [isMobile]);
 
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [open, setOpen] = React.useState(isMobile);
+
+  const onNavClick = () => {
+    // close the sidenav onClick if they are mobile
+    if (isMobile) {
+      setOpen(false);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -114,7 +124,7 @@ export default function Nav({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title} noWrap>
-            UCMO Hackathingy
+            Binder
           </Typography>
           {!isAuthenticated ? (
             <Button color="inherit" onClick={() => loginWithRedirect({})}>
@@ -143,14 +153,26 @@ export default function Nav({ children }) {
         </div>
         <Divider />
         <List>
-          <NavItem label="Home" route="/" icon={<HomeIcon />} />
-          <NavItem label="Public Messages" route="/public" icon={<InboxIcon />} />
+          <NavItem label="Home" route="/" icon={<HomeIcon />} onClick={onNavClick} />
+          <NavItem
+            label="Swipe Page (name tbd)"
+            route="/swipe"
+            icon={<HomeIcon />}
+            onClick={onNavClick}
+          />
         </List>
 
         <Divider />
 
         <List>
           <NavItem label="Private Messages" route="/private" icon={<MailIcon />} />
+          <NavItem label="My Profile" route="/profile" icon={<PersonIcon />} onClick={onNavClick} />
+          <NavItem
+            label="My Business"
+            route="/business"
+            icon={<BusinessIcon />}
+            onClick={onNavClick}
+          />
         </List>
       </Drawer>
       <main

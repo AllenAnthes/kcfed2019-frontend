@@ -12,15 +12,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavItem = ({ label, icon, route }) => {
+const NavItem = ({ label, icon, route, onClick = () => {} }) => {
   const classes = useStyles();
   return (
-    <Link to={route} className={classes.root}>
-    <ListItem button>
-  <ListItemIcon>{icon}</ListItemIcon>
-<ListItemText primary={label} />
-</ListItem>
-</Link>
+    <Link to={route} className={classes.root} onClick={onClick}>
+      <ListItem button>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={label} />
+      </ListItem>
+    </Link>
   );
 };
 
