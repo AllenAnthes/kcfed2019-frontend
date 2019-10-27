@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
 import { useApi } from '../hooks/useApi';
 import { useTheme } from '@material-ui/core';
@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 255,
     display: 'block',
     maxWidth: 400,
     overflow: 'hidden',
@@ -47,20 +46,17 @@ const SwipeSection = ({ businesses }) => {
   const [activeStep, setActiveStep] = React.useState(1);
 
   const handleStepChange = (step, prev, meta) => {
-    console.log({ step, a: prev, meta });
     if (step > prev) {
-      console.log('swipe left');
+      console.log('swiped left');
     } else {
-      console.log('swipe right');
-      api.post('/api/user/likeBusiness', { body: businesses[prev] }).then(res => {
-        console.log(res);
-      });
+      console.log('swiped right');
+      api.post('/api/user/likeBusiness', { body: businesses[prev] }).then(res => {});
     }
     setActiveStep(prev + 1);
   };
 
   const currentBusiness = businesses.length ? businesses[activeStep] : {};
-  console.log({ activeStep, businesses });
+
 
   return (
     <div className={classes.root}>

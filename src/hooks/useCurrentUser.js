@@ -15,7 +15,6 @@ export const useCurrentUser = () => {
       api
         .get('/api/user/me')
         .then(res => {
-          console.log(res);
           setUser(res);
         })
         .catch(setError)

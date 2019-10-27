@@ -23,11 +23,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 255,
     display: 'block',
     maxWidth: 400,
     overflow: 'hidden',
     width: '100%',
+    backgroundSize: 'contain',
   },
   skillsets: {
     marginTop: '1rem',

@@ -13,6 +13,7 @@ import SwipeUsersPage from './pages/SwipeUsersPage';
 import MyBusiness from './pages/MyBusiness';
 import User from './pages/User';
 import SwipeBusinesses from './pages/SwipeBusinesses';
+import Home from './pages/Home';
 const domain = process.env.REACT_APP_DOMAIN || 'ucmo.auth0.com';
 const client_id = process.env.REACT_APP_CLIENT_ID || 'ovgpuezFccL1dIEicco4k9s3gRpOjQrw';
 const audience = process.env.REACT_APP_AUDIENCE || 'kcfed-2019';
@@ -49,7 +50,7 @@ function App() {
             <Nav>
               <Switch>
                 <Route exact path="/">
-                  <ClickStuff />
+                  <Home />
                 </Route>
                 <Route path="/users/:skillset">
                   <SwipeUsersPage />

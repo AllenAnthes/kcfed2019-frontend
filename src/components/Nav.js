@@ -13,16 +13,18 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import { FullsizePicture } from 'react-responsive-picture';
 
 import { useAuth0 } from '../hooks/useAuth0';
 import NavItem from './NavItem';
-import logo from '../images/logo.png';
+import logoPlain from '../images/logo-plain.png';
 
 const drawerWidth = 220;
 
@@ -147,6 +149,7 @@ export default function Nav({ children }) {
         }}
       >
         <div className={classes.drawerHeader}>
+          <FullsizePicture src={logoPlain} cover={'width'} style={{ padding: '2rem' }} />
           <IconButton onClick={() => setOpen(false)}>
             <ChevronLeftIcon />
           </IconButton>
@@ -154,12 +157,12 @@ export default function Nav({ children }) {
         <Divider />
         <List>
           <NavItem label="Home" route="/" icon={<HomeIcon />} onClick={onNavClick} />
-          <NavItem label="View Users" route="/users" icon={<HomeIcon />} onClick={onNavClick} />
+          <NavItem label="View Users" route="/users" icon={<GroupAddIcon />} onClick={onNavClick} />
 
           <NavItem
             label="View Businesses"
             route="/businesses"
-            icon={<HomeIcon />}
+            icon={<BusinessCenterIcon />}
             onClick={onNavClick}
           />
         </List>
@@ -167,7 +170,6 @@ export default function Nav({ children }) {
         <Divider />
 
         <List>
-          <NavItem label="Private Messages" route="/private" icon={<MailIcon />} />
           <NavItem label="My Profile" route="/profile" icon={<PersonIcon />} onClick={onNavClick} />
           <NavItem
             label="My Business"

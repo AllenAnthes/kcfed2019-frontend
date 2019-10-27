@@ -108,16 +108,6 @@ const Profile = () => {
                           showFileNames
                         />
                       </Grid>
-                      <Grid item xs={10} sm={8} md={7} style={{ marginTop: '1rem' }}>
-                        <DropzoneArea
-                          dropzoneText="Drag and drop an image file here or click"
-                          acceptedFiles={['image/*']}
-                          onChange={val => setFieldValue('image', val)}
-                          filesLimit={1}
-                          maxFileSize={4000000}
-                          showFileNames
-                        />
-                      </Grid>
                       <Button
                         disabled={!isValid}
                         variant="contained"

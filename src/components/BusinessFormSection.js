@@ -5,8 +5,8 @@ import MaterialInput from './MaterialInput';
 import MaterialSelect from './MaterialSelect';
 import { MOCK_CATEGORIES } from '../dev/constants';
 import Button from '@material-ui/core/Button';
-import useMediaQuery from '@material-ui/core/useMediaQuery/useMediaQuery';
 import * as yup from 'yup';
+
 import { useSnackbars } from '../hooks/useSnackbars';
 import { useApi } from '../hooks/useApi';
 
@@ -29,7 +29,6 @@ const BusinessFormSection = ({ business }) => {
   const { showSnackbarSuccess } = useSnackbars();
   const theme = useTheme();
   const api = useApi();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const onSubmit = values => {
     console.log(values);
@@ -40,7 +39,7 @@ const BusinessFormSection = ({ business }) => {
   };
 
   return (
-    <Grid container justify={isMobile ? undefined : 'center'}>
+    <Grid container>
       <Formik initialValues={business} onSubmit={onSubmit} validationSchema={schema}>
         {({ isValid }) => (
           <Form>

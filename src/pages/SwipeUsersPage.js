@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { useParams } from 'react-router';
+
 import { useApi } from '../hooks/useApi';
 import SwipeUsersSection from '../components/SwipeUsersSection';
 import AuthenticatedPage from '../components/AuthenticatedPage';

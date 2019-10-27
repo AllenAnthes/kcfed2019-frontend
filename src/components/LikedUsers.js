@@ -50,7 +50,7 @@ const LikedUsers = ({ users }) => {
               >
                 {user.skillsets &&
                   user.skillsets.map(skill => (
-                    <Grid item>
+                    <Grid item key={skill}>
                       <Chip key={skill} label={skill} variant="outlined" />
                     </Grid>
                   ))}
