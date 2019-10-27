@@ -9,7 +9,7 @@ import PrivateMessages from './pages/PrivateMessages';
 import { SnackbarProvider } from 'notistack';
 import Profile from './pages/Profile';
 import { light } from './theme';
-import SwipePage from './pages/SwipePage';
+import SwipeUsersPage from './pages/SwipeUsersPage';
 import MyBusiness from './pages/MyBusiness';
 import User from './pages/User';
 import SwipeBusinesses from './pages/SwipeBusinesses';
@@ -52,7 +52,7 @@ function App() {
                   <ClickStuff />
                 </Route>
                 <Route path="/users/:skillset">
-                  <SwipePage />
+                  <SwipeUsersPage />
                 </Route>
 
                 <Route path={'/user/:id'}>
@@ -60,7 +60,7 @@ function App() {
                 </Route>
 
                 <Route path="/users">
-                  <SwipePage />
+                  <SwipeUsersPage />
                 </Route>
 
                 <Route path="/businesses">

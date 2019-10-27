@@ -6,10 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import Grid from '@material-ui/core/Grid';
-import { MOCK_STEPS } from '../dev/constants';
 import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import ResumeDialog from './ResumeDialog';
 import makeStyles from '@material-ui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({

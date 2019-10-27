@@ -4,6 +4,7 @@ import { useApi } from '../hooks/useApi';
 import SwipeUsersSection from '../components/SwipeUsersSection';
 import { makeStyles } from '@material-ui/core';
 import SwipeBusinessesSection from '../components/SwipeBusinessesSection';
+import AuthenticatedPage from '../components/AuthenticatedPage';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,7 +22,11 @@ const SwipeBusinesses = () => {
   useEffect(() => {
     api.get(`/api/business`).then(res => {
       console.log(res);
-      setBusinesses([{ name: 'start-$buffer' }, ...res, { name: 'end-$buffer' }]);
+      setBusinesses([
+        { name: 'start-$buffer', user: {} },
+        ...res,
+        { name: 'end-$buffer', user: {} },
+      ]);
     });
 
     api.get('/api/business/mine').then(res => {
@@ -32,9 +37,17 @@ const SwipeBusinesses = () => {
   const loading = !businesses;
 
   return (
-    <div className={classes.root}>
-      {!loading && <SwipeBusinessesSection businesses={businesses} />}
-    </div>
+    <AuthenticatedPage>
+      {authedUser => (
+        <div className={classes.root}>
+          {!loading && (
+            <SwipeBusinessesSection
+              businesses={businesses.filter(business => business.user.id !== authedUser.id)}
+            />
+          )}
+        </div>
+      )}
+    </AuthenticatedPage>
   );
 };
 

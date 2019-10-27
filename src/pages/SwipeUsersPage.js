@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from 'react-router';
 import { useApi } from '../hooks/useApi';
 import SwipeUsersSection from '../components/SwipeUsersSection';
+import AuthenticatedPage from '../components/AuthenticatedPage';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SwipePage = () => {
+const SwipeUsersPage = () => {
   const [users, setUsers] = useState(null);
   const [business, setBusiness] = useState(null);
   const { skillset } = useParams();
@@ -23,7 +24,7 @@ const SwipePage = () => {
   useEffect(() => {
     api.get(getUsersUrl).then(res => {
       console.log(res);
-      setUsers([{ name: 'start-$buffer' }, ...res, { name: 'end-$buffer' }]);
+      setUsers([{ name: 'start-$buffer'}, ...res, { name: 'end-$buffer' }]);
     });
 
     api.get('/api/business/mine').then(res => {
@@ -33,7 +34,20 @@ const SwipePage = () => {
 
   const loading = !users || !business;
 
-  return <div className={classes.root}>{!loading && <SwipeUsersSection users={users} />}</div>;
+  return (
+    <AuthenticatedPage>
+      {authedUser => (
+        <div className={classes.root}>
+          {!loading && (
+            <SwipeUsersSection
+              users={users.filter(user => user.id !== authedUser.id)}
+              authedUser={authedUser}
+            />
+          )}
+        </div>
+      )}
+    </AuthenticatedPage>
+  );
 };
 
-export default SwipePage;
+export default SwipeUsersPage;
