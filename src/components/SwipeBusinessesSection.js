@@ -67,7 +67,7 @@ const SwipeSection = ({ businesses }) => {
 
   return (
     <div className={classes.root}>
-      {currentBusiness.name.includes('$buffer') ? (
+      {currentBusiness.name && currentBusiness.name.includes('$buffer') ? (
         <Grid container justify="center">
           <Typography variant="caption">No more businesses</Typography>
         </Grid>
