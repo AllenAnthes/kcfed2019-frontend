@@ -4,6 +4,7 @@ import { useAuth0 } from './useAuth0';
 // left blank in order to use the proxy to be backend (defined in package.json)
 const API_ROOT = process.env.REACT_APP_API_ROOT || '';
 
+
 const getToken = async (getTokenSilently = () => {}) => {
   try {
     if (getTokenSilently) {
