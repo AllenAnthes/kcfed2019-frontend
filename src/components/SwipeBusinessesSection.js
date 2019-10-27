@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useApi } from '../hooks/useApi';
 import { useTheme } from '@material-ui/core';
@@ -8,6 +8,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
 import makeStyles from '@material-ui/styles/makeStyles';
+import MatchBusinessDialog from './MatchBusinessDialog';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,26 +38,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SwipeSection = ({ businesses }) => {
+const SwipeSection = ({ businesses, authedUser }) => {
   const { skillset } = useParams();
   const api = useApi();
+
+  const [matchedBusiness, setMatchedBusiness] = useState(null);
 
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(1);
 
-  const handleStepChange = (step, prev, meta) => {
+  const handleStepChange = (step, prev) => {
     if (step > prev) {
       console.log('swiped left');
     } else {
       console.log('swiped right');
-      api.post('/api/user/likeBusiness', { body: businesses[prev] }).then(res => {});
+      api.post('/api/user/likeBusiness', { body: businesses[prev] }).then(business => {
+        console.log(business);
+        if (business.likedUsers.some(user => user.id === authedUser.id)) {
+          setMatchedBusiness(business);
+          console.log('YAYYY');
+        }
+      });
     }
     setActiveStep(prev + 1);
   };
 
   const currentBusiness = businesses.length ? businesses[activeStep] : {};
-
 
   return (
     <div className={classes.root}>
@@ -100,6 +108,9 @@ const SwipeSection = ({ businesses }) => {
             {currentBusiness.pitch}
           </Typography>
         </>
+      )}
+      {matchedBusiness && (
+        <MatchBusinessDialog onClose={() => setMatchedBusiness(null)} business={matchedBusiness} />
       )}
     </div>
   );

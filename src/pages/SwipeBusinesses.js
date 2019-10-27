@@ -25,7 +25,6 @@ const SwipeBusinesses = () => {
         { name: 'end-$buffer', user: {} },
       ]);
     });
-
   }, [skillset]);
 
   const loading = !businesses;
@@ -37,6 +36,7 @@ const SwipeBusinesses = () => {
           {!loading && (
             <SwipeBusinessesSection
               businesses={businesses.filter(business => business.user.id !== authedUser.id)}
+              authedUser={authedUser}
             />
           )}
         </div>

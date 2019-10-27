@@ -173,7 +173,7 @@ export default function Nav({ children }) {
           <NavItem label="My Profile" route="/profile" icon={<PersonIcon />} onClick={onNavClick} />
           <NavItem
             label="My Business"
-            route="/business"
+            route="/myBusiness"
             icon={<BusinessIcon />}
             onClick={onNavClick}
           />

@@ -10,6 +10,7 @@ import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import ResumeDialog from './ResumeDialog';
 import makeStyles from '@material-ui/styles/makeStyles';
+import MatchUserDialog from './MatchUserDialog';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,9 +41,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SwipeUsersSection = ({ users }) => {
+const SwipeUsersSection = ({ users, usersBusiness }) => {
   const { skillset } = useParams();
   const api = useApi();
+
+  const [matchedUser, setMatchedUser] = useState(null);
 
   const classes = useStyles();
   const [viewResume, setViewResume] = useState(false);
@@ -55,8 +58,10 @@ const SwipeUsersSection = ({ users }) => {
       console.log('swipe left');
     } else {
       console.log('swipe right');
-      api.post('/api/business/likeUser', { body: users[prev] }).then(res => {
-        console.log(res);
+      api.post('/api/business/likeUser', { body: users[prev] }).then(user => {
+        if (user.likedBusinesses.some(business => business.id === usersBusiness.id)) {
+          setMatchedUser(user);
+        }
       });
     }
     setActiveStep(prev + 1);
@@ -68,7 +73,7 @@ const SwipeUsersSection = ({ users }) => {
     <div className={classes.root}>
       {currentUser.name.includes('$buffer') ? (
         <Grid container justify="center">
-          <Typography variant="caption">No more peeps</Typography>
+          <Typography variant="caption">No more users 🙁</Typography>
         </Grid>
       ) : (
         <>
@@ -122,6 +127,8 @@ const SwipeUsersSection = ({ users }) => {
           )}
         </>
       )}
+
+      {matchedUser && <MatchUserDialog user={matchedUser} onClose={() => setMatchedUser(null)} />}
     </div>
   );
 };

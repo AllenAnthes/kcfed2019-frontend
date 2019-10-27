@@ -24,7 +24,7 @@ const SwipeUsersPage = () => {
   useEffect(() => {
     api.get(getUsersUrl).then(res => {
       console.log(res);
-      setUsers([{ name: 'start-$buffer'}, ...res, { name: 'end-$buffer' }]);
+      setUsers([{ name: 'start-$buffer' }, ...res, { name: 'end-$buffer' }]);
     });
 
     api.get('/api/business/mine').then(res => {
@@ -42,6 +42,7 @@ const SwipeUsersPage = () => {
             <SwipeUsersSection
               users={users.filter(user => user.id !== authedUser.id)}
               authedUser={authedUser}
+              usersBusiness={business}
             />
           )}
         </div>
