@@ -74,6 +74,14 @@ const Profile = () => {
                             fullWidth
                           />
                         </Grid>
+                        <Grid item xs={10} sm={8} md={6}>
+                          <Field
+                            component={MaterialInput}
+                            name="imageUrl"
+                            label="Headshot Url (optional)"
+                            fullWidth
+                          />
+                        </Grid>
                         <Grid item xs={10} sm={8} md={7}>
                           <Field
                             component={MaterialInput}

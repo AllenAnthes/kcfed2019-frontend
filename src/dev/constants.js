@@ -35,6 +35,6 @@ export const MOCK_STEPS = [
   },
 ];
 
-export const MOCK_SKILLSETS = ['Front-end Developer', 'Back-end Developer', 'Designer', ''];
+export const MOCK_SKILLSETS = ['Front-end Developer', 'Back-end Developer', 'Designer'];
 
-export const MOCK_CATEGORIES = ['Information Technology', 'Retail'];
+export const MOCK_CATEGORIES = ['Information Technology', 'Cybersecurity', 'Retail'];

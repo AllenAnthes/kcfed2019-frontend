@@ -8,9 +8,11 @@ import Nav from './components/Nav';
 import PrivateMessages from './pages/PrivateMessages';
 import { SnackbarProvider } from 'notistack';
 import Profile from './pages/Profile';
-import { dark, light } from './theme';
+import { light } from './theme';
 import SwipePage from './pages/SwipePage';
 import MyBusiness from './pages/MyBusiness';
+import User from './pages/User';
+import SwipeBusinesses from './pages/SwipeBusinesses';
 const domain = process.env.REACT_APP_DOMAIN || 'ucmo.auth0.com';
 const client_id = process.env.REACT_APP_CLIENT_ID || 'ovgpuezFccL1dIEicco4k9s3gRpOjQrw';
 const audience = process.env.REACT_APP_AUDIENCE || 'kcfed-2019';
@@ -49,12 +51,20 @@ function App() {
                 <Route exact path="/">
                   <ClickStuff />
                 </Route>
-                <Route path="/swipe/:skillset">
+                <Route path="/users/:skillset">
                   <SwipePage />
                 </Route>
 
-                <Route path="/swipe">
+                <Route path={'/user/:id'}>
+                  <User />
+                </Route>
+
+                <Route path="/users">
                   <SwipePage />
+                </Route>
+
+                <Route path="/businesses">
+                  <SwipeBusinesses />
                 </Route>
 
                 <Route path="/private">

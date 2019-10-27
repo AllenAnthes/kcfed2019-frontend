@@ -154,9 +154,11 @@ export default function Nav({ children }) {
         <Divider />
         <List>
           <NavItem label="Home" route="/" icon={<HomeIcon />} onClick={onNavClick} />
+          <NavItem label="View Users" route="/users" icon={<HomeIcon />} onClick={onNavClick} />
+
           <NavItem
-            label="Swipe Page (name tbd)"
-            route="/swipe"
+            label="View Businesses"
+            route="/businesses"
             icon={<HomeIcon />}
             onClick={onNavClick}
           />

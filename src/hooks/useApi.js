@@ -22,7 +22,6 @@ export const useApi = () => {
 
   const request = async (path, config, isFile) => {
     const token = await getToken(getTokenSilently);
-    // const token = await getTokenSilently().catch(() => '');
 
     const response = await fetch(API_ROOT + path, {
       ...config,
@@ -42,6 +41,7 @@ export const useApi = () => {
   return {
     get: async (path, config = {}) => request(path, { ...config, method: 'GET' }),
     post: async (path, config = {}) => request(path, { ...config, method: 'POST' }),
+    put: async (path, config = {}) => request(path, { ...config, method: 'PUT' }),
     putFile: async (path, config = {}) => request(path, { ...config, method: 'PUT' }, true),
   };
 };
