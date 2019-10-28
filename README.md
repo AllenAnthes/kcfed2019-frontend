@@ -14,7 +14,7 @@ challenges then showcase their talents to prospective startup owners. If both
 parties believe that they would be a good match then Binder brings them
 together.
 
-[Youtube Video](https://www.youtube.com/watch?v=xMih9739tog)
+[Youtube Video](https://www.youtube.com/watch?v=GeW4ZS_v9KA)
 
 [Backend Repo](https://github.com/AllenAnthes/binder-backend)
 
