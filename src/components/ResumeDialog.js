@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FileViewer from 'react-file-viewer';
 
-import resume from '../dev/Demietry Huff Resume 8.1.2019 (1).docx';
+import resume from '../dev/sample-resume.pdf';
 
 export default function ResumeDialog({ handleClose, name }) {
   return (
@@ -20,7 +20,7 @@ export default function ResumeDialog({ handleClose, name }) {
     >
       <DialogTitle id="alert-dialog-title">{name}</DialogTitle>
       <DialogContent>
-        <FileViewer fileType="docx" filePath={resume} />
+        <FileViewer fileType="pdf" filePath={resume} />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary" autoFocus>
